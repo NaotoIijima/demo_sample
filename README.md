@@ -1,2 +1,2 @@
 # panorama_demo
-[Page Link](https://naotoiijima.github.io/demo.github.io/sample02/)
+[Page Link](https://naotoiijima.github.io/demo_sample/sample02/)
