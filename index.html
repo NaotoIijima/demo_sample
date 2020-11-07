@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
   <!-- A-frameの読み込み -->
-  <script src="../common/js/aframe-v0.4.0.min.js"></script>
+  <script src="../common/js/aframe-v0.7.1.min.js"></script>
   <script src="../common/js/shared.js"></script>
   <script src="../common/js/crossfade.js"></script>
   <script src="../common/js/script.js"></script>
@@ -32,34 +32,56 @@
 <!-- シーン -->
   <!--
     <a-scene foo>
+    
   -->
-  <a-scene>
-
+  <a-scene foo>
+  
   <!-- 素材 -->
  
   <a-assets>
+    <img id="nogi" crossOrigin="anonymous" src="../common/images/image.jpg">
     <video id="video"
            src="../common/videos/video_nosound.mp4"
            loop="true"></video>
   </a-assets> 
-  <a-entity id="camera" camera look-controls wasd-controls></a-entity>
-  <!--<a-camera position="0 1.6 -4" rotation="0 180 0" id="player1">
-    <a-cursor></a-cursor>
-    <a-box color="#998877"></a-box>
-  </a-camera>
--->
+
+  <a-entity id="camera" camera look-controls wasd-controls>
+    <a-entity cursor="fuse: true;"
+        position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
+        material="color: white; shader: flat">
+        <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
+           fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+           fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+    </a-entity>
+  </a-entity>
+
+  
+  <a-entity link="href: https://thomi40.github.io/aframe/082/sample-image-001/; title: Change Position; image: #nogi" position="0 1.2 -10"></a-entity>
+  
+ 
+
 <!--
   <a-camera raycaster crawling-cursor="target: #cursor"></a-camera>
   <a-ring cursor id="cursor" look-at="0 0 0" radius-outer="1.2" radius-inner="0.06" color="black" opacity="0.7"></a-ring>
 -->
   <!-- 全天球背景 -->
-  <!--
-  <a-videosphere src="#video" sound= "src: #sample; autoplay: true; loop: true; positional: false; " rotation="0 -130 0"></a-videosphere>
+<!--  
+  <a-box color="red" depth="3" height="3" width="3" position="0 -1 -6" href="https://riptutorial.com/aframe/example/30897/register-a-custom-a-frame-component"></a-box>
+ 
+  <a-entity class="link-object" data-link="https://magnets.jp" geometry="primitive: plane; width: 2.5" position="-2 1.5 -2" material="shader: html; target: #element" rotation="0 -2 0"></a-entity>
 -->
 
-  <a-box color="red" depth="3" height="3" width="3" position="0 -1 -6"></a-box>
+  
+
+  <a-videosphere src="#video" sound= "src: #sample; autoplay: true; loop: true; positional: false; " rotation="0 -130 0"></a-videosphere>
+
+<!--
+ 
     <a-sky color="#87ceeb"></a-sky>
-   
+  -->
+
 </a-scene>
 
 </body>
