@@ -13,22 +13,34 @@
     AFRAME.registerComponent('foo',{
   init:function(){
   var vid = document.getElementById('video');
+  var vid2 = document.getElementById('video2');
   document.querySelector('#video').pause();
+  document.querySelector('#video2').pause();
   console.log('pause');
   window.addEventListener("click", function(){
     vid.play();
+    vid2.play();
   }, { once: true});
 }
 })
   </script>
-
-  <!--
-  <script src="../common/js/k-frame.min.js"></script>
-  <script src="../common/js/aframe-crawling-cursor.min.js"></script>
--->
 </head>
 <body>
-
+    <div style="width: 400px;">
+        <div style="float: right; display: inline-block;">
+            <select id="head">
+              <option value="kemar" selected>Kemar</option>
+              <option value="kemar2">Kemar2</option>
+              <option value="kemar3">Kemar3</option>
+            </select>
+        </div>
+        <div style="display: inline-block;">
+            Listening position: <select id="pos" onchange=render()>
+              <option value="1" selected>A (0 m, 0 m, 0 m)</option>
+              <option value="2">B (0.1 m, 0 m, 0 m)</option>
+            </select>
+        </div>
+    </div>
 <!-- シーン -->
   <!--
     <a-scene foo>
@@ -42,7 +54,12 @@
     <img id="nogi" crossOrigin="anonymous" src="../common/images/image.jpg">
     <video id="video"
            src="../common/videos/sample_nosound.mp4"
+           opacity="1"
            loop="false"></video>
+    <video id="video2"
+           src="../common/videos/video_nosound.mp4"
+           opacity="0"
+           loop="true"></video>
   </a-assets> 
 
   <a-entity id="camera" camera look-controls wasd-controls>
@@ -57,9 +74,9 @@
     </a-entity>
   </a-entity>
 
-  
+  <!--
   <a-entity link="href: https://naotoiijima.github.io/demo_sample/sample01/; title: Change Position; image: #nogi" position="0 1.2 -10"></a-entity>
-  
+  -->
  
 
 <!--
@@ -73,16 +90,41 @@
   <a-entity class="link-object" data-link="https://magnets.jp" geometry="primitive: plane; width: 2.5" position="-2 1.5 -2" material="shader: html; target: #element" rotation="0 -2 0"></a-entity>
 -->
 
-  
-
-  <a-videosphere src="#video" sound= "src: #sample; autoplay: true; loop: true; positional: false; " rotation="0 -90 0"></a-videosphere>
-
+<!--  
+<a-box color="red" depth="3" height="3" width="3" position="0 -1 -6" ></a-box>
+-->
 <!--
- 
-    <a-sky color="#87ceeb"></a-sky>
+  <a-videosphere src="#video" rotation="0 -90 0" opacity="1"></a-videosphere>
+  <a-videosphere src="#video2" rotation="0 -90 0" opacity="1"></a-videosphere>
   -->
 
+
 </a-scene>
+<script>
+    var scene = document.querySelector('a-scene');
+    var vid1 = document.createElement('a-videosphere');
+    var vid2 = document.createElement('a-videosphere');
+    vid1.setAttribute('src', '#video');
+    vid1.setAttribute('rotation', '0 -90 0');
+    vid1.setAttribute('opacity', '1');
+    vid2.setAttribute('src', '#video2');
+    vid2.setAttribute('rotation', '0 -90 0');
+    vid2.setAttribute('opacity', '0');
+    scene.appendChild(vid1);
+    scene.appendChild(vid2);
+    //window.addEventListener("click", render);
+    function render() {
+      requestAnimationFrame(render);
+      var opa = document.getElementById('pos');
+      if(opa.value=="1"){
+        vid1.setAttribute('opacity', '1');
+        vid2.setAttribute('opacity', '0');
+      }else if(opa.value=="2"){
+        vid1.setAttribute('opacity', '0');
+        vid2.setAttribute('opacity', '1');
+      }
+    }
+</script>
 
 </body>
 </html>
