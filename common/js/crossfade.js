@@ -16,6 +16,7 @@
 
 var CrossfadeSample = function() {
   loadSounds(this, {
+    /*
     sig0: '../common/audio/exp(11_9)/signal_0.wav',
     sig45: '../common/audio/exp(11_9)/signal_-45.wav',
     sig90: '../common/audio/exp(11_9)/signal_-90.wav',
@@ -32,7 +33,25 @@ var CrossfadeSample = function() {
     sig_135_a: '../common/audio/male_135.wav',
     sig_90_a: '../common/audio/male_90.wav',
     sig_45_a: '../common/audio/male_45.wav'
+    */
+    sig0: '../common/audio/exp(11_23)/org/signal_0.wav',
+    sig45: '../common/audio/exp(11_23)/org/signal_-45.wav',
+    sig90: '../common/audio/exp(11_23)/org/signal_-90.wav',
+    sig135: '../common/audio/exp(11_23)/org/signal_-135.wav',
+    sig180: '../common/audio/exp(11_23)/org/signal_180.wav',
+    sig_135: '../common/audio/exp(11_23)/org/signal_135.wav',
+    sig_90: '../common/audio/exp(11_23)/org/signal_90.wav',
+    sig_45: '../common/audio/exp(11_23)/org/signal_45.wav',
+    sig0_a: '../common/audio/exp(11_23)/trans/signal_0.wav',
+    sig45_a: '../common/audio/exp(11_23)/trans/signal_-45.wav',
+    sig90_a: '../common/audio/exp(11_23)/trans/signal_-90.wav',
+    sig135_a: '../common/audio/exp(11_23)/trans/signal_-135.wav',
+    sig180_a: '../common/audio/exp(11_23)/trans/signal_180.wav',
+    sig_135_a: '../common/audio/exp(11_23)/trans/signal_135.wav',
+    sig_90_a: '../common/audio/exp(11_23)/trans/signal_90.wav',
+    sig_45_a: '../common/audio/exp(11_23)/trans/signal_45.wav'
   });
+  console.log("sound loading finished!");
   this.isPlaying = false;
 }
 
@@ -102,7 +121,7 @@ CrossfadeSample.prototype.play = function() {
     var gainNode = context.createGain();
     source.buffer = buffer;
     // Turn on looping
-    source.loop = true;
+    source.loop = false;
     // Connect source to gain.
     source.connect(gainNode);
     // Connect gain to destination.
