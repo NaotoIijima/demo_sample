@@ -1,7 +1,9 @@
-var sample = new CrossfadeSample();
+/*var sample = new CrossfadeSample();
 window.addEventListener("click", function(){
     // 音を鳴らす
-    sample.toggle(this);
+    setTimeout(sample.toggle(this), 50000);
+    //sample.toggle(this);
+    console.log("sound started!");
 }, { once: true});
 
 addEventListener('mousemove', {sample, handleEvent: direction},false);
@@ -11,8 +13,7 @@ function direction(e) {
     var position = document.getElementById('pos');
     console.log(rotation.y); 
     this.sample.crossfade(rotation.y,position.value);
-
 }
 
-
+*/
     
