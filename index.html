@@ -27,9 +27,9 @@
                 this.sample.crossfade(rotation.y,position.value);
               }
             window.addEventListener("click", function(){
-                setTimeout(() => vid.play(), 20000);
-                setTimeout(() => vid2.play(), 20000);
-                setTimeout(() => sample.toggle(this), 20000);
+                setTimeout(() => sample.toggle(this), 10000);
+                setTimeout(() => vid.play(), 10000);
+                setTimeout(() => vid2.play(), 10000);
                 //vid.play();
                 //vid2.play();
                 //sample.toggle(this)
@@ -66,13 +66,13 @@
   <a-assets>
     <img id="nogi" crossOrigin="anonymous" src="../common/images/image.jpg">
     <video id="video"
-           src="../common/videos/11_23/video_nosound.mp4"
+           src="../common/videos/11_23/video_1min.mp4"
            opacity="1"
            loop="false"></video>
     <video id="video2"
-           src="../common/videos/11_23/video_trans_nosound.mp4"
+           src="../common/videos/11_23/video_1min_trans.mp4"
            opacity="0"
-           loop="true"></video>
+           loop="false"></video>
   </a-assets> 
 
   <a-entity id="camera" camera look-controls wasd-controls>
