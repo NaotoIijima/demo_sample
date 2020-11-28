@@ -11,18 +11,31 @@
   <script src="../common/js/script.js"></script>
   <script>
     AFRAME.registerComponent('foo',{
-  init:function(){
-  var vid = document.getElementById('video');
-  var vid2 = document.getElementById('video2');
-  document.querySelector('#video').pause();
-  document.querySelector('#video2').pause();
-  console.log('pause');
-  window.addEventListener("click", function(){
-    vid.play();
-    vid2.play();
-  }, { once: true});
-}
-})
+        init:function(){
+            var sample = new CrossfadeSample();
+            var vid = document.getElementById('video');
+            var vid2 = document.getElementById('video2');
+            document.querySelector('#video').pause();
+            document.querySelector('#video2').pause();
+            console.log("video loading finished!");
+            addEventListener('mousemove', {sample, handleEvent: direction},false);
+            function direction(e) {
+                var camera = document.getElementById('camera');
+                var rotation = camera.getAttribute('rotation');
+                var position = document.getElementById('pos');
+                console.log(rotation.y); 
+                this.sample.crossfade(rotation.y,position.value);
+              }
+            window.addEventListener("click", function(){
+                setTimeout(() => sample.toggle(this), 10000);
+                setTimeout(() => vid.play(), 10000);
+                setTimeout(() => vid2.play(), 10000);
+                //vid.play();
+                //vid2.play();
+                //sample.toggle(this)
+            }, { once: true});
+        }
+    })
   </script>
 </head>
 <body>
@@ -53,13 +66,13 @@
   <a-assets>
     <img id="nogi" crossOrigin="anonymous" src="../common/images/image.jpg">
     <video id="video"
-           src="../common/videos/sample_nosound.mp4"
+           src="../common/videos/11_23/video_1min.mp4"
            opacity="1"
            loop="false"></video>
     <video id="video2"
-           src="../common/videos/video_nosound.mp4"
+           src="../common/videos/11_23/video_1min_trans.mp4"
            opacity="0"
-           loop="true"></video>
+           loop="false"></video>
   </a-assets> 
 
   <a-entity id="camera" camera look-controls wasd-controls>
@@ -90,9 +103,10 @@
   <a-entity class="link-object" data-link="https://magnets.jp" geometry="primitive: plane; width: 2.5" position="-2 1.5 -2" material="shader: html; target: #element" rotation="0 -2 0"></a-entity>
 -->
 
-<!--  
-<a-box color="red" depth="3" height="3" width="3" position="0 -1 -6" ></a-box>
+<!--
+<a-box color="red" depth="1" height="1" width="1" position="0 -1 -6" ></a-box>
 -->
+
 <!--
   <a-videosphere src="#video" rotation="0 -90 0" opacity="1"></a-videosphere>
   <a-videosphere src="#video2" rotation="0 -90 0" opacity="1"></a-videosphere>
@@ -105,10 +119,10 @@
     var vid1 = document.createElement('a-videosphere');
     var vid2 = document.createElement('a-videosphere');
     vid1.setAttribute('src', '#video');
-    vid1.setAttribute('rotation', '0 -90 0');
+    vid1.setAttribute('rotation', '0 -180 0');
     vid1.setAttribute('opacity', '1');
     vid2.setAttribute('src', '#video2');
-    vid2.setAttribute('rotation', '0 -90 0');
+    vid2.setAttribute('rotation', '0 -180 0');
     vid2.setAttribute('opacity', '0');
     scene.appendChild(vid1);
     scene.appendChild(vid2);
